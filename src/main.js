@@ -17,11 +17,13 @@ Vue.use(VueMoment, {
 
 import roads from './modules/roads'
 import trafficJams from "./modules/trafficJams";
+import roadworks from "./modules/roadworks";
 
 export const store = new Vuex.Store({
   modules: {
     roads,
-    trafficJams
+    trafficJams,
+    roadworks
   },
   state: {
       error: null

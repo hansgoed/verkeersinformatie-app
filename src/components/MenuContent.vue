@@ -16,18 +16,18 @@
             id="roadworksOverview"
             v-if="selectedTab === 'Werkzaamheden'"
         >
-            werkzaamheden
+            <RoadworksOverview />
         </span>
     </span>
 </template>
 <script>
-    import { mapState } from 'vuex'
-
     import RoadsOverview from "./MenuContent/RoadsOverview";
     import TrafficJamsOverview from "./MenuContent/TrafficJamsOverview";
+    import RoadworksOverview from "./MenuContent/RoadworksOverview";
 
     export default {
         components: {
+            RoadworksOverview,
             TrafficJamsOverview,
             RoadsOverview
         },
