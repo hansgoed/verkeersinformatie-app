@@ -4,7 +4,7 @@
             <b-card-title>File op de {{ road }}</b-card-title>
             <b-card-sub-title>Van {{ startLocation.name }} tot {{ endLocation.name }}</b-card-sub-title>
             <b-card-body>
-                <p>{{ description }}</p>
+                <p v-if="description !== null">{{ description }}</p>
                 <p>Eerst gezien
                     <b-link v-b-tooltip.hover v-bind:title="createdAt | moment('D MMMM HH:MM')">
                         {{ createdAt | moment("from") }}
