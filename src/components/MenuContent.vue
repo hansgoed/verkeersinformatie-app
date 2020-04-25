@@ -33,13 +33,6 @@
         },
         props: {
             "selectedTab": String
-        },
-        computed: mapState({
-            trafficJams: function (state) { return state.trafficJams.all },
-            roadworks: function (state) { return state.roadworks.all }
-        }),
-        created() {
-            this.$store.dispatch('roads/getAllRoads')
         }
     }
 </script>
