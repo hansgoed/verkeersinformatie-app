@@ -4,13 +4,24 @@ import Vuex from 'vuex'
 import App from './App.vue';
 import BootstrapVue from 'bootstrap-vue';
 
-import roads from './modules/roads'
 Vue.use(BootstrapVue);
 Vue.use(Vuex);
 
+import VueMoment from 'vue-moment';
+const moment = require('moment');
+require('moment/locale/nl');
+
+Vue.use(VueMoment, {
+  moment
+});
+
+import roads from './modules/roads'
+import trafficJams from "./modules/trafficJams";
+
 export const store = new Vuex.Store({
   modules: {
-    roads
+    roads,
+    trafficJams
   },
   state: {
       error: null
@@ -21,6 +32,7 @@ export const store = new Vuex.Store({
     }
   }
 })
+
 Vue.config.productionTip = false
 
 new Vue({

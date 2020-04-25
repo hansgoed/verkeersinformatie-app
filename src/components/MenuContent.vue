@@ -10,7 +10,7 @@
             id="trafficJamsOverview"
             v-if="selectedTab === 'Files'"
         >
-            files
+            <TrafficJamsOverview />
         </span>
         <span
             id="roadworksOverview"
@@ -22,10 +22,15 @@
 </template>
 <script>
     import { mapState } from 'vuex'
+
     import RoadsOverview from "./MenuContent/RoadsOverview";
+    import TrafficJamsOverview from "./MenuContent/TrafficJamsOverview";
 
     export default {
-        components: {RoadsOverview},
+        components: {
+            TrafficJamsOverview,
+            RoadsOverview
+        },
         props: {
             "selectedTab": String
         },
