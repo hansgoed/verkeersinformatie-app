@@ -8,6 +8,7 @@
                 v-bind:resolved-at="trafficJam.resolvedAt"
                 v-bind:start-location="trafficJam.startLocation"
                 v-bind:end-location="trafficJam.endLocation"
+                v-bind:description="trafficJam.description"
         />
     </span>
 
