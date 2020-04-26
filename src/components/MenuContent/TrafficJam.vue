@@ -24,8 +24,8 @@
     export default {
         props: {
             road: String,
-            createdAt: Date,
-            resolvedAt: Date,
+            createdAt: String,
+            resolvedAt: String,
             description: String,
             startLocation: Object,
             endLocation: Object,
