@@ -20,6 +20,7 @@
         </b-nav>
       </b-card-header>
       <b-card-body>
+        <Filters v-show="selectedTab !== 'Wegen'" />
         <b-card-text>
           <MenuContent v-bind:selectedTab="selectedTab"/>
         </b-card-text>
@@ -32,10 +33,12 @@
 import './assets/overall_style.scss';
 
 import MenuContent from "./components/MenuContent";
+import Filters from "./components/Filters";
 
 export default {
   name: 'App',
   components: {
+    Filters,
     MenuContent: MenuContent
   },
   data() {
