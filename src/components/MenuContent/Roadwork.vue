@@ -6,12 +6,12 @@
             <b-card-body>
                 <p v-if="description !== null">{{ description }}</p>
                 <p>Eerst gezien
-                    <b-link v-b-tooltip.hover v-bind:title="createdAt | moment('D MMMM HH:mm')">
+                    <b-link v-b-tooltip.hover v-bind:title="new Date(createdAt) | moment('D MMMM HH:mm')">
                         {{ createdAt | moment("calendar") }}
                     </b-link>
                 </p>
                 <p v-if="resolvedAt !== null">
-                    <b-link v-b-tooltip.hover v-bind:title="resolvedAt | moment('D MMMM HH:mm')">
+                    <b-link v-b-tooltip.hover v-bind:title="new Date(resolvedAt) | moment('D MMMM HH:mm')">
                         {{ resolvedAt | moment("calendar") }}
                     </b-link>
                 </p>
@@ -24,8 +24,8 @@
     export default {
         props: {
             road: String,
-            createdAt: Date,
-            resolvedAt: Date,
+            createdAt: String,
+            resolvedAt: String,
             description: String,
             startLocation: Object,
             endLocation: Object,

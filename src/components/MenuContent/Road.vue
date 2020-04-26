@@ -4,18 +4,22 @@
             {{ name }}
         </b-card-title>
         <b-card-body>
-            <b-badge v-if="trafficJamCount !== 0" class="badge-warning">
-                <img src="icons/traffic-jam.svg" width="30"/>
+            <b-button
+                v-if="trafficJamCount !== 0"
+                v-on:click="showTrafficJams"
+                class="btn-warning"
+            >
+                <img src="icons/traffic-jam.svg" alt="Files" />
                 {{ trafficJamCount }}
-            </b-badge>
-            <b-badge v-if="roadworksCount !== 0" class="badge-warning">
-                <img src="icons/road-work.svg" width="30"/>
+            </b-button>
+            <b-button v-if="roadworksCount !== 0" class="btn-warning">
+                <img src="icons/road-work.svg" alt="Werkzaamheden" />
                 {{ roadworksCount }}
-            </b-badge>
-            <b-badge v-if="radarsCount !== 0" class="badge-warning">
-                <img src="icons/radar.svg" width="30"/>
+            </b-button>
+            <b-button v-if="radarsCount !== 0" class="btn-warning">
+                <img src="icons/radar.svg" alt="Flitsers" />
                 {{ radarsCount }}
-            </b-badge>
+            </b-button>
         </b-card-body>
     </b-card>
 </template>
@@ -27,22 +31,23 @@
             'trafficJamCount': Number,
             'roadworksCount': Number,
             'radarsCount': Number
+        },
+        methods: {
+            showTrafficJams: function () {
+                this.$store.dispatch('filters/applyRoadFilter', this.name);
+            }
         }
     }
 </script>
 
 <style scoped>
-    .badge-warning {
+    .btn-warning {
         margin-right: 0.5em;
-        padding-left: 1em;
-        padding-right: 1em;
     }
 
-    .badge-warning img {
+    .btn-warning img {
         width: 30px;
         height: 30px;
-
-        margin: 3px 1em 3px 3px;
     }
 
 </style>

@@ -18,12 +18,14 @@ Vue.use(VueMoment, {
 import roads from './modules/roads'
 import trafficJams from "./modules/trafficJams";
 import roadworks from "./modules/roadworks";
+import filters from "./modules/filters";
 
 export const store = new Vuex.Store({
   modules: {
     roads,
     trafficJams,
-    roadworks
+    roadworks,
+    filters
   },
   state: {
       error: null

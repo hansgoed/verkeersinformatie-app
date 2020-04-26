@@ -1,7 +1,7 @@
 <template>
     <span>
         <TrafficJam
-                v-for="trafficJam in trafficJams"
+                v-for="trafficJam in filteredTrafficJams"
                 :key="trafficJam.id"
                 v-bind:road="trafficJam.road"
                 v-bind:created-at="trafficJam.createdAt"
@@ -21,8 +21,16 @@
     export default {
         components: {TrafficJam},
         computed: mapState({
-            trafficJams: function (state) {
-                return state.trafficJams.all;
+            filteredTrafficJams: function (state) {
+                if (typeof state.filters.roadName !== 'string') {
+                    return state.trafficJams.all;
+                }
+
+                let roadFilter = state.filters.roadName;
+
+                return state.trafficJams.all.filter(function (trafficJam) {
+                    return trafficJam.road === roadFilter;
+                });
             }
         }),
         created() {
