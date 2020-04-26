@@ -12,7 +12,10 @@
                 <img src="icons/traffic-jam.svg" alt="Files" />
                 {{ trafficJamCount }}
             </b-button>
-            <b-button v-if="roadworksCount !== 0" class="btn-warning">
+            <b-button v-if="roadworksCount !== 0"
+                      v-on:click="showRoadworks"
+                      class="btn-warning"
+            >
                 <img src="icons/road-work.svg" alt="Werkzaamheden" />
                 {{ roadworksCount }}
             </b-button>
@@ -34,6 +37,9 @@
         },
         methods: {
             showTrafficJams: function () {
+                this.$store.dispatch('filters/applyRoadFilter', this.name);
+            },
+            showRoadworks: function () {
                 this.$store.dispatch('filters/applyRoadFilter', this.name);
             }
         }
