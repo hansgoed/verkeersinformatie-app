@@ -15,6 +15,9 @@ Vue.use(VueMoment, {
   moment
 });
 
+import datePicker from 'vue-bootstrap-datetimepicker';
+Vue.use(datePicker);
+
 import roads from './modules/roads'
 import trafficJams from "./modules/trafficJams";
 import roadworks from "./modules/roadworks";

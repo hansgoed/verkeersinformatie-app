@@ -22,14 +22,48 @@
         computed: {
             filteredTrafficJams: function () {
                 let roadFilter = this.$store.state.filters.roadName;
+                let dateFilter = this.$store.state.filters.date;
 
-                let allTrafficJams = this.$store.state.trafficJams.all;
-                if (roadFilter === null) {
-                    return allTrafficJams;
-                }
+                return this.$store.state.trafficJams.all.filter(function (trafficJam) {
+                    if (typeof roadFilter === 'function') {
+                        roadFilter = null;
+                    }
+                    if (typeof dateFilter === 'function') {
+                        dateFilter = null;
+                    }
 
-                return allTrafficJams.filter(function (trafficJam) {
-                    return trafficJam.road === roadFilter;
+                    // No filters
+                    if (roadFilter === null && dateFilter === null) {
+                        return true;
+                    }
+
+                    // Road filter does not match.
+                    if (roadFilter !== null && trafficJam.road !== roadFilter) {
+                        return false;
+                    }
+
+                    // No date filter, road matches
+                    if (dateFilter === null) {
+                        return true;
+                    }
+
+                    // Created after the date
+                    if (new Date(trafficJam.createdAt).getTime() > dateFilter.getTime()) {
+                        return false;
+                    }
+
+                    // Currently going on
+                    if (trafficJam.resolvedAt === null) {
+                        return true;
+                    }
+
+                    // Ended before the date
+                    if (new Date(trafficJam.resolvedAt).getTime() < dateFilter.getTime())
+                    {
+                        return false;
+                    }
+
+                    return true;
                 });
             }
         },

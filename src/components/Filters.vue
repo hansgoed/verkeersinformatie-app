@@ -11,6 +11,7 @@
                     {{road.name}}
                 </b-form-select-option>
             </b-form-select>
+            <date-picker value="dateFilter" v-bind:config="datePickerOptions" v-on:dp-change="setDateFilter"/>
         </b-card-body>
     </b-card>
 </template>
@@ -26,15 +27,35 @@
             },
             roadFilter: function () {
                 return this.$store.state.filters.roadName;
+            },
+            dateFilter: function () {
+                return this.$store.state.filters.date;
+            },
+            datePickerOptions: function () {
+                return {
+                    format: 'DD-MM-YYYY HH:mm'
+                }
             }
         },
         methods: {
             setRoadFilter: function (value) {
                 this.$store.dispatch('filters/applyRoadFilter', value);
+            },
+            setDateFilter: function (value) {
+                if (typeof value.date === 'undefined') {
+                    return;
+                }
+
+                console.log('setting date filter', new Date(value.date));
+
+                this.$store.dispatch('filters/applyDateFilter', new Date(value.date));
+                this.$store.dispatch('trafficJams/getAllTrafficJams');
+                this.$store.dispatch('roadworks/getAllRoadworks');
             }
         },
         created() {
             this.setRoadFilter(null);
+            this.setDateFilter(new Date());
         }
     }
 </script>

@@ -1,18 +1,25 @@
 const state = {
-    roadName: String
+    roadName: String,
+    date: Date
 }
 
 const getters = {}
 
 const actions = {
-    applyRoadFilter(commit, payload) {
-        commit.commit('setRoadFilter', payload)
+    applyRoadFilter(context, payload) {
+        context.commit('setRoadFilter', payload);
+    },
+    applyDateFilter(context, payload) {
+        context.commit('setDateFilter', payload);
     }
 }
 
 const mutations = {
     setRoadFilter(state, roadName) {
         state.roadName = roadName;
+    },
+    setDateFilter(state, date) {
+        state.date = date;
     }
 }
 
