@@ -15,24 +15,24 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
     import Roadwork from "./Roadwork";
 
     export default {
         components: {Roadwork},
-        computed: mapState({
-            filteredRoadworks: function (state) {
-                if (typeof state.filters.roadName !== 'string') {
-                    return state.roadworks.all;
+        computed: {
+            filteredRoadworks: function () {
+                let roadFilter = this.$store.state.filters.roadName;
+
+                let allRoadworks = this.$store.state.roadworks.all;
+                if (roadFilter === null) {
+                    return allRoadworks;
                 }
 
-                let roadFilter = state.filters.roadName;
-
-                return state.roadworks.all.filter(function (roadwork) {
+                return allRoadworks.filter(function (roadwork) {
                     return roadwork.road === roadFilter;
                 });
             }
-        }),
+        },
         created() {
             this.$store.dispatch('roadworks/getAllRoadworks')
         }

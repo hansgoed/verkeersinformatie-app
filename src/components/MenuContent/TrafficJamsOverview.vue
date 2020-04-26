@@ -15,24 +15,24 @@
 </template>
 
 <script>
-    import {mapState} from "vuex";
     import TrafficJam from "./TrafficJam";
 
     export default {
         components: {TrafficJam},
-        computed: mapState({
-            filteredTrafficJams: function (state) {
-                if (typeof state.filters.roadName !== 'string') {
-                    return state.trafficJams.all;
+        computed: {
+            filteredTrafficJams: function () {
+                let roadFilter = this.$store.state.filters.roadName;
+
+                let allTrafficJams = this.$store.state.trafficJams.all;
+                if (roadFilter === null) {
+                    return allTrafficJams;
                 }
 
-                let roadFilter = state.filters.roadName;
-
-                return state.trafficJams.all.filter(function (trafficJam) {
+                return allTrafficJams.filter(function (trafficJam) {
                     return trafficJam.road === roadFilter;
                 });
             }
-        }),
+        },
         created() {
             this.$store.dispatch('trafficJams/getAllTrafficJams')
         }
