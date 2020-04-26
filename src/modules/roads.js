@@ -10,11 +10,9 @@ const actions = {
     getAllRoads({ commit }) {
         Axios.get('http://trafficinfo.localhost/roads')
             .then(function (response) {
-                console.log(response);
                 commit("setRoads", response.data)
             })
             .catch(function (error) {
-                console.log(error);
                 commit.commit("throwError", error)
             });
     }
