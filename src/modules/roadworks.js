@@ -7,13 +7,15 @@ const state = {
 const getters = {}
 
 const actions = {
-    getAllRoadworks({ commit }) {
+    getAllRoadworks(context) {
         Axios.get('http://trafficinfo.localhost/roadworks')
             .then(function (response) {
-                commit("setRoadworks", response.data)
+                context.commit("setRoadworks", response.data)
             })
             .catch(function (error) {
-                commit.commit("throwError", error)
+                console.log(error);
+                alert(error);
+                context.commit("throwError", error)
             });
     }
 }
