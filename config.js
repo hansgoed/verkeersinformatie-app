@@ -1,3 +1,3 @@
 export default {
-    'api_host': 'http://trafficinfo.localhost'
+    'api_base_url': process.env.VUE_APP_API_BASE_URL
 }

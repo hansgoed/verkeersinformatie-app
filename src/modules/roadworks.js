@@ -9,7 +9,7 @@ const getters = {}
 
 const actions = {
     getAllRoadworks(context) {
-        Axios.get(config.api_host + '/roadworks')
+        Axios.get(config.api_base_url + '/roadworks')
             .then(function (response) {
                 context.commit("setRoadworks", response.data)
             })

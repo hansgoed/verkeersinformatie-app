@@ -14,7 +14,7 @@ const actions = {
             dateTime = context.rootState.filters.date.toISOString();
         }
 
-        Axios.get(config.api_host + '/traffic_jams', {
+        Axios.get(config.api_base_url + '/traffic_jams', {
             'params': {
                 'datetime': dateTime
             }
