@@ -1,4 +1,5 @@
 import Axios from "axios";
+import config from "../../config";
 
 const state = {
     all: []
@@ -8,7 +9,7 @@ const getters = {}
 
 const actions = {
     getAllRoads(context) {
-        Axios.get('http://trafficinfo.localhost/roads')
+        Axios.get(config.api_host + '/roads')
             .then(function (response) {
                 context.commit("setRoads", response.data)
             })

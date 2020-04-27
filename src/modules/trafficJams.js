@@ -1,4 +1,5 @@
 import Axios from "axios";
+import config from "../../config";
 
 const state = {
     all: []
@@ -13,7 +14,7 @@ const actions = {
             dateTime = context.rootState.filters.date.toISOString();
         }
 
-        Axios.get('http://trafficinfo.localhost/traffic_jams', {
+        Axios.get(config.api_host + '/traffic_jams', {
             'params': {
                 'datetime': dateTime
             }
