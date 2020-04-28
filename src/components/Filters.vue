@@ -1,7 +1,11 @@
 <template>
     <b-card>
         <b-card-body>
-            <b-form-select v-bind:value="roadFilter" v-on:change="setRoadFilter">
+            <b-form-select
+                    v-bind:value="roadFilter"
+                    v-on:change="setRoadFilter"
+                    v-if="showRoadFilter"
+            >
                 <b-form-select-option :value="null">Alle wegen</b-form-select-option>
                 <b-form-select-option
                     v-bind:key="road.id"
@@ -18,9 +22,6 @@
 
 <script>
     export default {
-        props: {
-            selectedTab: String
-        },
         computed: {
             roads: function () {
                 return this.$store.state.roads.all;
@@ -35,6 +36,14 @@
                 return {
                     format: 'DD-MM-YYYY HH:mm'
                 }
+            },
+            showRoadFilter: function() {
+                let selectedTab = this.$store.state.menu.selectedTab;
+                if (selectedTab === 'Wegen') {
+                    return false;
+                }
+
+                return true;
             }
         },
         methods: {
@@ -51,6 +60,7 @@
                 this.$store.dispatch('filters/applyDateFilter', new Date(value.date));
                 this.$store.dispatch('trafficJams/getAllTrafficJams');
                 this.$store.dispatch('roadworks/getAllRoadworks');
+                this.$store.dispatch('roads/getAllRoads');
             }
         },
         created() {

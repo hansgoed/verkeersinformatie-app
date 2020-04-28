@@ -20,7 +20,7 @@
         </b-nav>
       </b-card-header>
       <b-card-body>
-        <Filters v-show="selectedTab !== 'Wegen'" />
+        <Filters />
         <b-card-text>
           <MenuContent v-bind:selectedTab="selectedTab"/>
         </b-card-text>

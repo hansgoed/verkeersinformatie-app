@@ -9,7 +9,16 @@ const getters = {}
 
 const actions = {
     getAllRoads(context) {
-        Axios.get(config.api_base_url + '/roads')
+        let dateTime = null;
+        if (typeof context.rootState.filters.date !== 'function') {
+            dateTime = context.rootState.filters.date.toISOString();
+        }
+
+        Axios.get(config.api_base_url + '/roads', {
+            'params': {
+                'datetime': dateTime
+            }
+        })
             .then(function (response) {
                 context.commit("setRoads", response.data)
             })
