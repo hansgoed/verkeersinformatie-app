@@ -20,7 +20,7 @@ const actions = {
             }
         })
             .then(function (response) {
-                actions.addOrUpdateTrafficJams(context, response.data)
+                actions.setTrafficJams(context, response.data)
             })
             .catch(function (error) {
                 console.log(error);
@@ -28,16 +28,14 @@ const actions = {
             });
     },
 
-    addOrUpdateTrafficJams(context, trafficJams) {
-        for (let trafficJam of trafficJams) {
-            context.commit("addOrUpdateTrafficJam", trafficJam)
-        }
+    setTrafficJams(context, trafficJams) {
+        context.commit("setTrafficJams", trafficJams)
     }
 }
 
 const mutations = {
-    addOrUpdateTrafficJam(state, trafficJam) {
-        state.all[trafficJam.id] = trafficJam;
+    setTrafficJams(state, trafficJams) {
+        state.all = trafficJams;
     }
 }
 
