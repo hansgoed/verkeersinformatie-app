@@ -23,13 +23,13 @@
             filteredRoadworks: function () {
                 let roadFilter = this.$store.state.filters.roadName;
 
-                let allRoadworks = this.$store.state.roadworks.all;
-                if (roadFilter === null) {
-                    return allRoadworks;
-                }
+                return this.$store.state.roadworks.all.filter(function (roadwork) {
+                    // Road filter does not match.
+                    if (roadFilter !== null && roadwork.road !== roadFilter) {
+                        return false;
+                    }
 
-                return allRoadworks.filter(function (roadwork) {
-                    return roadwork.road === roadFilter;
+                    return true;
                 });
             }
         },
