@@ -10,15 +10,17 @@
                 v-bind:end-location="trafficJam.endLocation"
                 v-bind:description="trafficJam.description"
         />
+        <NoResultsMessage v-if="filteredTrafficJams.length === 0" />
     </span>
 
 </template>
 
 <script>
     import TrafficJam from "./TrafficJam";
+    import NoResultsMessage from "./NoResultsMessage";
 
     export default {
-        components: {TrafficJam},
+        components: {NoResultsMessage, TrafficJam},
         computed: {
             filteredTrafficJams: function () {
                 let roadFilter = this.$store.state.filters.roadName;

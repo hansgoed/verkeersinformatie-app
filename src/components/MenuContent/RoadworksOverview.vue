@@ -10,15 +10,17 @@
                 v-bind:end-location="roadwork.endLocation"
                 v-bind:description="roadwork.description"
         />
+        <NoResultsMessage v-if="filteredRoadworks.length === 0" />
     </span>
 
 </template>
 
 <script>
     import Roadwork from "./Roadwork";
+    import NoResultsMessage from "./NoResultsMessage";
 
     export default {
-        components: {Roadwork},
+        components: {NoResultsMessage, Roadwork},
         computed: {
             filteredRoadworks: function () {
                 let roadFilter = this.$store.state.filters.roadName;
