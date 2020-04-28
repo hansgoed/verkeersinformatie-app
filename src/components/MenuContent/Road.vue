@@ -38,9 +38,11 @@
         methods: {
             showTrafficJams: function () {
                 this.$store.dispatch('filters/applyRoadFilter', this.name);
+                this.$store.dispatch('menu/changeTab', 'Files');
             },
             showRoadworks: function () {
                 this.$store.dispatch('filters/applyRoadFilter', this.name);
+                this.$store.dispatch('menu/changeTab', 'Werkzaamheden');
             }
         }
     }
