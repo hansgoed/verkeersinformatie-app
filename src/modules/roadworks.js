@@ -9,7 +9,16 @@ const getters = {}
 
 const actions = {
     getAllRoadworks(context) {
-        Axios.get(config.api_base_url + '/roadworks')
+        let dateTime = null;
+        if (typeof context.rootState.filters.date !== 'function') {
+            dateTime = context.rootState.filters.date.toISOString();
+        }
+
+        Axios.get(config.api_base_url + '/roadworks', {
+            'params': {
+                'datetime': dateTime
+            }
+        })
             .then(function (response) {
                 context.commit("setRoadworks", response.data)
             })
