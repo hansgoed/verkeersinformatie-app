@@ -22,13 +22,15 @@ import roads from './modules/roads'
 import trafficJams from "./modules/trafficJams";
 import roadworks from "./modules/roadworks";
 import filters from "./modules/filters";
+import menu from "./modules/menu";
 
 export const store = new Vuex.Store({
   modules: {
     roads,
     trafficJams,
     roadworks,
-    filters
+    filters,
+    menu
   },
   state: {
       error: null

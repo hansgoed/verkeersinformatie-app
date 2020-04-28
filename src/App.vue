@@ -41,9 +41,13 @@ export default {
     Filters,
     MenuContent: MenuContent
   },
+  computed: {
+    selectedTab: function () {
+      return this.$store.state.menu.selectedTab;
+    }
+  },
   data() {
     return {
-      selectedTab: 'Wegen',
       links: [
         'Wegen',
         'Files',
@@ -52,9 +56,12 @@ export default {
     }
   },
   methods: {
-    selectTab: function (tab) {
-      this.selectedTab = tab;
+    selectTab: function (tabTitle) {
+      this.$store.dispatch('menu/changeTab', tabTitle);
     }
+  },
+  created() {
+    this.$store.dispatch('menu/changeTab', 'Wegen')
   }
 }
 </script>
